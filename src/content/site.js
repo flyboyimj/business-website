@@ -17,12 +17,12 @@ export const business = {
 
   // Public website address, no trailing slash. Used for canonical URLs,
   // the sitemap, and social sharing tags.
-  siteUrl: 'https://surveiltech.com',
+  siteUrl: 'https://surveiltechnologies.com',
 
   // `display` is what visitors see; `tel` is the dialable number for tap-to-call.
   phone: { display: '(832) 699-3540', tel: '+18326993540' },
 
-  email: 'info@surveiltech.com',
+  email: 'info@surveiltechnologies.com',
 
   // Where the business is based and whom it serves. No street address is
   // published anywhere on the site.

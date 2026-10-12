@@ -5,8 +5,8 @@ Run `npm run check` at any time to see which required items are still missing.
 ## Required before launch
 
 - [x] **Phone number**: (832) 699-3540
-- [x] **Public email address**: info@surveiltech.com (make sure this mailbox exists before launch)
-- [x] **Domain**: surveiltech.com
+- [x] **Public email address**: info@surveiltechnologies.com (make sure this mailbox exists before launch)
+- [x] **Domain**: surveiltechnologies.com
 - [ ] **Contact form backend deployed** (README section 3) and **`FORM_ENDPOINT`** set in Amplify or your build command
 - [ ] **SES set up**: domain verified, and receiving inbox verified or production access granted
 - [ ] **`AllowedOrigins`** in the backend lists your final domain(s)
@@ -31,7 +31,7 @@ Run `npm run check` at any time to see which required items are still missing.
 - [ ] **Owner photo** for the About page (`photos.owner`)
 - [ ] **Privacy policy page** if you add analytics or use form data beyond replying to inquiries
 - [ ] **Google Business Profile** for local search (service-area business, no address shown)
-- [ ] **Google Search Console**: verify the domain and submit `https://surveiltech.com/sitemap.xml`
+- [ ] **Google Search Console**: verify the domain and submit `https://surveiltechnologies.com/sitemap.xml`
 
 ## Intentionally not included (add only with real information)
 
