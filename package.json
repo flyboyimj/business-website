@@ -1,0 +1,18 @@
+{
+  "name": "surveil-technologies-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website for Surveil Technologies — commercial cabling and security technology, Houston area.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "build:preview": "node scripts/build.mjs --flat",
+    "check": "node scripts/build.mjs --check",
+    "test": "node --test backend/test/handler.test.mjs",
+    "preview:single": "node scripts/build-single-preview.mjs"
+  }
+}

@@ -1,0 +1,77 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Surveil Technologies website contact form. API Gateway HTTP API -> Lambda -> Amazon SES.
+  Deploy with: sam build && sam deploy --guided  (see README.md, "Contact form backend").
+
+Parameters:
+  AllowedOrigins:
+    Type: CommaDelimitedList
+    Description: >
+      Site origins allowed to submit the form, comma-separated, no trailing slash.
+      Example: https://www.yourdomain.com,https://yourdomain.com
+  ToEmail:
+    Type: String
+    Description: Address that receives form submissions (e.g. you@yourdomain.com).
+  FromEmail:
+    Type: String
+    Description: SES-verified sender address (e.g. website@yourdomain.com). Must be verified in SES in this Region.
+
+Globals:
+  Function:
+    Runtime: nodejs22.x
+    Architectures: [arm64]
+    MemorySize: 256
+    Timeout: 10
+
+Resources:
+  ContactApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins: !Ref AllowedOrigins
+        AllowMethods: [POST]
+        AllowHeaders: [content-type]
+        MaxAge: 600
+      DefaultRouteSettings:
+        # Basic abuse protection. Plenty for a small business contact form.
+        ThrottlingBurstLimit: 10
+        ThrottlingRateLimit: 2
+
+  ContactFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/contact/
+      Handler: index.handler
+      Description: Validates website inquiries and emails them via SES.
+      Environment:
+        Variables:
+          TO_EMAIL: !Ref ToEmail
+          FROM_EMAIL: !Ref FromEmail
+          ALLOWED_ORIGINS: !Join [',', !Ref AllowedOrigins]
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action: ses:SendEmail
+              Resource: !Sub arn:${AWS::Partition}:ses:${AWS::Region}:${AWS::AccountId}:identity/*
+              Condition:
+                StringEquals:
+                  ses:FromAddress: !Ref FromEmail
+      Events:
+        Submit:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref ContactApi
+            Path: /contact
+            Method: POST
+
+  ContactFunctionLogs:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub /aws/lambda/${ContactFunction}
+      RetentionInDays: 90
+
+Outputs:
+  ContactEndpoint:
+    Description: Set this as FORM_ENDPOINT when building the website.
+    Value: !Sub https://${ContactApi}.execute-api.${AWS::Region}.${AWS::URLSuffix}/contact

@@ -1,0 +1,14 @@
+version: 1
+# AWS Amplify Hosting build settings.
+# The site has no npm dependencies, so there is no install step.
+# Set FORM_ENDPOINT under Amplify → your app → Hosting → Environment variables.
+frontend:
+  phases:
+    build:
+      commands:
+        - node --version
+        - npm run build
+  artifacts:
+    baseDirectory: dist
+    files:
+      - '**/*'

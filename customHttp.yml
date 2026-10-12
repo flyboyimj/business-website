@@ -1,0 +1,22 @@
+# Security and caching headers for AWS Amplify Hosting.
+# Amplify reads this file from the repository root, or you can paste the same
+# YAML into Amplify → your app → Hosting → Custom headers.
+customHeaders:
+  - pattern: '**/*'
+    headers:
+      - key: Strict-Transport-Security
+        value: max-age=31536000; includeSubDomains
+      - key: X-Content-Type-Options
+        value: nosniff
+      - key: X-Frame-Options
+        value: DENY
+      - key: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - key: Permissions-Policy
+        value: camera=(), microphone=(), geolocation=()
+  # CSS and JS URLs change automatically when their content changes (?v=...),
+  # so browsers can cache assets. If you replace an image, give it a new file name.
+  - pattern: 'assets/**/*'
+    headers:
+      - key: Cache-Control
+        value: public, max-age=604800

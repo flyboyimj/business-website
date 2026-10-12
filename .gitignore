@@ -1,0 +1,10 @@
+node_modules/
+dist/
+dist-preview/
+.dev-build/
+.aws-sam/
+samconfig.toml
+.DS_Store
+.env
+.env.*
+preview/
