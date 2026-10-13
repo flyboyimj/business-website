@@ -1,9 +1,9 @@
 /**
  * Contact / site walk request form.
  *
- * The form posts JSON to the endpoint set by the FORM_ENDPOINT environment
- * variable at build time (see README). The endpoint is a public URL, not a
- * secret. No keys or credentials ever go in the front end.
+ * The form posts JSON to form.endpoint in site.js (a Formspree form address),
+ * or to FORM_ENDPOINT if set at build time. The endpoint is a public URL, not
+ * a secret. No keys or credentials ever go in the front end.
  */
 import { business, services, form } from '../content/site.js';
 import { esc, each } from './util.js';

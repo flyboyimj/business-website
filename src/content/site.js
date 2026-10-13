@@ -258,6 +258,11 @@ export const processSteps = [
 
 /** Contact form choices. Service choices come from `services` above. */
 export const form = {
+  // Where the contact form sends submissions: your Formspree form address,
+  // e.g. 'https://formspree.io/f/abcdwxyz'. This is a public URL, not a
+  // password. Leave as null until the Formspree form exists.
+  endpoint: null,
+
   timelineOptions: [
     'As soon as possible',
     'Within the next month',

@@ -209,6 +209,9 @@
     fieldIds.forEach(function (id) {
       payload[id] = value(id);
     });
+    // Formspree: email subject line, and its spam trap reads `_gotcha`.
+    payload._subject = 'Website: ' + payload.requestType + (payload.name ? ' from ' + payload.name : '');
+    payload._gotcha = payload.website;
 
     setSending(true);
     setStatus('pending', 'Sending your request…');
@@ -220,7 +223,7 @@
 
     fetch(endpoint, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify(payload),
       signal: controller ? controller.signal : undefined,
     })

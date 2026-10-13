@@ -7,9 +7,9 @@ Run `npm run check` at any time to see which required items are still missing.
 - [x] **Phone number**: (832) 699-3540
 - [x] **Public email address**: info@surveiltechnologies.com (make sure this mailbox exists before launch)
 - [x] **Domain**: surveiltechnologies.com
-- [ ] **Contact form backend deployed** (README section 3) and **`FORM_ENDPOINT`** set in Amplify or your build command
-- [ ] **SES set up**: domain verified, and receiving inbox verified or production access granted
-- [ ] **`AllowedOrigins`** in the backend lists your final domain(s)
+- [ ] **Formspree form created** (README section 3) and its address set in `form.endpoint` in `site.js`
+- [ ] **GitHub Pages turned on**: Settings → Pages → Source: GitHub Actions (README section 4)
+- [ ] **Domain connected**: custom domain set in GitHub Pages, GoDaddy DNS records added, **Enforce HTTPS** on
 - [ ] **Send a real test inquiry** from the live site and confirm it arrives and Reply-To works
 - [ ] **Confirm Texas licensing for security camera installation** before advertising that service. The Texas Department of Public Safety states that companies installing cameras that transmit or store images over a computer network fall under the Private Security Act's definition of an alarm system, so an alarm systems company license appears to apply. Confirm with the DPS Private Security Program what applies to your business. The site does not claim any license. (See https://www.dps.texas.gov/section/private-security/network-video-systems-alarm-systems.)
 

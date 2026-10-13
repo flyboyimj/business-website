@@ -41,6 +41,9 @@ export async function build({
     imp('src/pages/not-found.js'),
   ]);
 
+  // FORM_ENDPOINT (environment) overrides form.endpoint in site.js.
+  formEndpoint = formEndpoint || site.form.endpoint || '';
+
   await fs.rm(outDir, { recursive: true, force: true });
   await fs.mkdir(path.join(outDir, 'assets'), { recursive: true });
 
@@ -112,7 +115,7 @@ function launchReport(site, formEndpoint) {
   if (!b.siteUrl) required.push('business.siteUrl — your domain (canonical URLs, sitemap)');
   if (!b.phone) required.push('business.phone — phone number (shows as a placeholder; Call button hidden)');
   if (!b.email) required.push('business.email — public email address (shows as a placeholder)');
-  if (!formEndpoint) required.push('FORM_ENDPOINT — contact form API URL (form cannot send without it)');
+  if (!formEndpoint) required.push('form.endpoint — contact form address in site.js (form cannot send without it)');
   if (!b.logo) optional.push('business.logo — using the text wordmark');
   const noPhotos = Object.entries(site.photos)
     .filter(([, p]) => !p.src)
